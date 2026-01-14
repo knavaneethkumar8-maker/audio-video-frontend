@@ -1,0 +1,25 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+body {
+  margin: 20px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  margin-bottom: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
