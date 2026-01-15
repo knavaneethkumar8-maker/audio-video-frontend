@@ -1,4 +1,3 @@
-console.log('video ops');
 const videoSong = document.querySelector('.js-video');
 
 const playButton = document.querySelector('.js-play-button');
@@ -16,6 +15,7 @@ const previousButton = document.querySelector('.js-previous-button');
 const replayButton = document.querySelector('.js-replay-button');
 const playBackSpeed = document.querySelector('.js-select-speed');
 const videoSeekBar = document.querySelector('.js-video-seekbar');
+const fullScreenButton = document.querySelector('.js-full-screen-button');
 
 let loopVideo = false;
 let autoPlay = false;
@@ -53,18 +53,17 @@ stopButton?.addEventListener('click', ()=> {
 
 skipForwardButton?.addEventListener('click', ()=> {
   videoSong.currentTime += 10;
-  console.log('forwarded 10 sec')
 });
 
 skipBackwardButton?.addEventListener('click', ()=> {
   videoSong.currentTime -= 10;
-  console.log('forwarded 10 sec')
+  //console.log('forwarded 10 sec')
 });
 
 jumpButton?.addEventListener('click', ()=> {
   timeStamp = Number(jumpTimeInput.value);
   videoSong.currentTime = timeStamp;
-  console.log('forwarded 10 sec')
+  //console.log('forwarded 10 sec')
 });
 
 loopButton?.addEventListener('click', () => {
@@ -140,10 +139,15 @@ playBackSpeed?.addEventListener('input', () => {
 
 
 videoSeekBar?.addEventListener('input', () => {
-  console.log(videoSeekBar.value);
+  //console.log(videoSeekBar.value);
   isSeeking = true;
   videoSong.currentTime = videoSeekBar.value;
 });
+
+
+fullScreenButton?.addEventListener("click", () => {
+  videoSong.requestFullscreen();
+})
 
 
 
@@ -159,18 +163,30 @@ function updateSeekBar() {
 videoSong?.addEventListener('loadedmetadata', ()=> {
   videoSeekBar.max = videoSong.duration.toFixed(2);
   videoSeekBar.value = 0;
-  console.log(videoSeekBar.max);
+  //console.log('loaded');
+  //console.log(videoSeekBar.max);
 });
+
+
+videoSong.addEventListener('waiting', () => {
+  //console.log('waiting');
+})
+
+videoSong.addEventListener('canplay', () => {
+  //console.log('in resume, can play');
+})
 
 videoSong?.addEventListener('timeupdate', () => {
   //videoSeekBar.value = videoSong.currentTime;
+  //console.log('time update', videoSong.currentTime);
 })
 
 videoSong?.addEventListener('play', () => {
   selectedSpeed = Number(playBackSpeed.value);
   videoSong.playbackRate = selectedSpeed;
   videoSeekBar.value = videoSong.currentTime;
-  requestAnimationFrame(updateSeekBar);
+  //console.log('playing');
+  updateSeekBar();
 })
 
 videoSong.addEventListener('ended', ()=> {
