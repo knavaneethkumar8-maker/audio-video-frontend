@@ -5,7 +5,7 @@
       "destination" : "/index.html"
     },
     {
-      "source" : "/video(.html)",
+      "source" : "/video",
       "destination" : "/pages/video.html"
     }
   ]
