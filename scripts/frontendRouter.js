@@ -4,6 +4,7 @@ const mainApp = document.querySelector('.js-app');
 function route(url, handler) {
   const pattern = new URLPattern({pathname : `${url}`});
   const urlPath = window.location.pathname;
+  console.log(urlPath);
   const matched = pattern.exec({pathname : urlPath});
 
   if(matched) {
@@ -19,6 +20,9 @@ function route(url, handler) {
 
 export function router() {
   console.log('router running');
+  const urlPath = window.location.pathname;
+  console.log(urlPath);
+
   route('/:userId/profile', () => {
     console.log('render user profile');
   });
